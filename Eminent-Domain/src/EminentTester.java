@@ -76,11 +76,11 @@ public class EminentTester {
        doorDeck.add(pluto2);
        doorDeck.add(pot2);
        
-       doorDeck.add(small2);
+     /*  doorDeck.add(small2);
        doorDeck.add(lvl2);
        doorDeck.add(dos2);
        doorDeck.add(tran2);
-       doorDeck.add(rac2);
+       doorDeck.add(rac2);  */
        
        LootDeck deckL = new LootDeck(lootDeck);
        DoorDeck deckD = new DoorDeck(doorDeck);
@@ -92,9 +92,7 @@ public class EminentTester {
        
        test.startGame();
        test.runTurn();
-       for(DoorCard x : test.getDoorDeck().getDeck()) {
-    	   System.out.print(" "+x+",");
-       }
+  
 	}
 
 }
