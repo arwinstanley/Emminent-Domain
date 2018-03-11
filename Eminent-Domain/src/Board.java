@@ -32,6 +32,8 @@ public int nextTurn() {
 	return turnCount;
 }
 public void startGame() {
+	lootDeck.shuffle();
+	doorDeck.shuffle();
 	lootDeck.deal(p1);
 	lootDeck.deal(p2);
 	doorDeck.deal(p1);
@@ -45,7 +47,6 @@ public void dealIn(Player player) {
 public void runTurn() {
 	if(turn) {
 		doorDeck.kickDownTheDoor(p1, this);
-
 		if(!fight) {
 			MonsterDoor mon = (MonsterDoor)p1.findFight();
 			if(!(mon ==null)) {
@@ -53,7 +54,8 @@ public void runTurn() {
 				challenge.fight(p1, this);
 			}
 		   lootDeck.lootTheRoom(1, p1);
-		}  
+		} 
+		update();
 		return;
 	}
 	else {
@@ -66,6 +68,7 @@ public void runTurn() {
 			}
 		   lootDeck.lootTheRoom(1, p2);
 		}
+		update();
 		return;
 	}
 }
@@ -104,5 +107,23 @@ public boolean isTurn() {
 }
 public void setTurn(boolean turn) {
 	this.turn = turn;
+}
+public void update() {
+	if(p1.getLvl()==0) {
+		System.out.println(p1.getName()+ " you are dead, you must redraw your hand");
+		p1.die(this);
+	}
+	if(p2.getLvl()==0) {
+		System.out.println(p2.getName()+ " you are dead, you must redraw your hand");
+		p2.die(this);
+	}
+	if(p1.getLvl()==10) {
+		System.out.println(p1.getName()+ " you Won in "+ turnCount + " turns");
+		System.exit(0);
+	}
+	if(p2.getLvl()==10) {
+		System.out.println(p2.getName()+ " you Won in "+ turnCount + " turns");
+		System.exit(0);
+	}
 }
 }
