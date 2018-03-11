@@ -52,16 +52,23 @@ public void fight(Player player, Board board) {
 			break;
 	}
 	if(!aggro) {
+		System.out.println("You won");
 		fightWon(player, board.getLootDeck());
 		return;
 	}
 	else if(player.getTotalLvl()-debuff > this.getLvl()) {
+		System.out.println("You won");
 		fightWon(player, board.getLootDeck());
 		return;
 	}
 	else {
+		System.out.println("You lost");
 		fightLost(player, board);
 		return;
 	}
+}
+@Override
+public String toString() {
+	return me.getId() + " a lvl " + getLvl() + " Monster, with " + me.getTreasure() + " treasure(s)";
 }
 }
