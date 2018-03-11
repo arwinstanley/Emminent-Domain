@@ -19,7 +19,7 @@ public void setTotalLvl(int totalLvl) {
 	this.totalLvl = totalLvl;
 }
 public Player(boolean gen, String nam ){
-	super(1);
+	super(2);
 	name = nam;
 	gender= gen;
 	lootInHand = new ArrayList<LootCard>();
@@ -123,6 +123,11 @@ public void discRandom(Board board) {
 	if(x==0)
 		board.getLootDeck().discard(lootInHand.get(y));
 	return;
+}
+public boolean run() {
+	if(((int)Math.random()*6 + 1) >= 4)
+		return true;
+	return false;
 }
 public DoorCard findFight(){
 	for(int i = 0; i < doorsInHand.size(); i++) {
